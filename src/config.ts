@@ -1,8 +1,8 @@
 import { ServerOptions } from './types/ServerOptions';
 
 export default {
-  secretKey: 'THISISMYSECURETOKEN',
-  host: 'http://localhost',
+  secretKey: 'THISISMYSECURETOKEN', // Altere para uma chave segura de sua preferência
+  host: '0.0.0.0', // CORREÇÃO: Permite que a aplicação responda fora do container no Coolify
   port: '21465',
   deviceName: 'WppConnect',
   poweredBy: 'WPPConnect-Server',
@@ -11,7 +11,7 @@ export default {
   maxListeners: 15,
   customUserDataDir: './userDataDir/',
   webhook: {
-    url: null,
+    url: null, // Caso queira o webhook global, substitua null pela sua URL do n8n entre aspas
     autoDownload: true,
     uploadS3: false,
     readMessage: true,
@@ -40,7 +40,7 @@ export default {
     daysToArchive: 45,
   },
   log: {
-    level: 'silly', // Before open a issue, change level to silly and retry a action
+    level: 'silly', // Mantido em 'silly' para facilitar o diagnóstico de logs no Coolify
     logger: ['console', 'file'],
   },
   createOptions: {
@@ -69,20 +69,7 @@ export default {
       '--ignore-ssl-errors',
       '--ignore-certificate-errors-spki-list',
     ],
-    /**
-     * Example of configuring the linkPreview generator
-     * If you set this to 'null', it will use global servers; however, you have the option to define your own server
-     * Clone the repository https://github.com/wppconnect-team/wa-js-api-server and host it on your server with ssl
-     *
-     * Configure the attribute as follows:
-     * linkPreviewApiServers: [ 'https://www.yourserver.com/wa-js-api-server' ]
-     */
     linkPreviewApiServers: null,
-
-    /**
-     * Set specific whatsapp version
-     */
-    // whatsappVersion: '2.xxxxx',
   },
   mapper: {
     enable: false,

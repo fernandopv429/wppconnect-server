@@ -1,4 +1,4 @@
-version: "3"
+version: '3'
 
 services:
   wppconnect:
@@ -7,10 +7,13 @@ services:
     build:
       context: .
     volumes:
-      - ./config.ts:/usr/src/wpp-server/config.ts
-      - ./wppconnect_tokens:/usr/src/wpp-server/tokens
+      - wppconnect_tokens:/usr/src/wpp-server/tokens
+      # Declaramos o arquivo de forma relativa. O Coolify vai ler isso e criar o campo na aba Storages
+      - ./src/config.ts:/usr/src/wpp-server/src/config.ts
     ports:
-      - "21465:21465"
+      - '21465:21465'
+    expose:
+      - '21465'
 
 volumes:
-  wppconnect_tokens: {}      
+  wppconnect_tokens: {}
